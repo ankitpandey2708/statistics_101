@@ -15,15 +15,20 @@ upper_bound = q3 + (1.5 * iqr)
 lower_bound = q1 - (1.5 * iqr)
 outliers = [x for x in data if x < lower_bound or x > upper_bound]
 
-
 plt.boxplot(data)
-plt.axhline(mean, color='r', linestyle='--')
+plt.axhline(upper_bound, color='r', linestyle='--')
+plt.axhline(maximum, color='r', linestyle='--')
+plt.axhline(minimum, color='r', linestyle='--')
+plt.axhline(median, color='r', linestyle='--')
+plt.text(0.5, upper_bound, f'upper_bound: {upper_bound:.2f}')
+plt.text(0.5, maximum, f'maximum: {maximum:.2f}')
+plt.text(0.5, minimum, f'minimum: {minimum:.2f}')
+plt.text(1, median, f'Median: {median:.2f}')
 '''
 plt.hist(data, bins=30, alpha=0.5)
 plt.axvline(median, color='red', linestyle='dashed', linewidth=2)
 plt.axvline(mean, color='green', linestyle='dashed', linewidth=2)
 '''
-
 # Add labels and title
 plt.xlabel('')
 plt.title('')
