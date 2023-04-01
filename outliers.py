@@ -1,46 +1,35 @@
-def min_max(lst):
-    return min(lst), max(lst)
+import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
 
-def median(lst):
-    n = len(lst)
-    s = sorted(lst)
-    mid = n // 2
-    if n % 2 == 0:
-        return (s[mid - 1] + s[mid]) / 2
-    else:
-        return s[mid]
-
-def quartiles(lst):
-    n = len(lst)
-    s = sorted(lst)
-    mid = n // 2
-    if n % 2 == 0:
-        lower = s[:mid]
-        upper = s[mid:]
-    else:
-        lower = s[:mid]
-        upper = s[mid+1:]
-    q1 = median(lower)
-    q3 = median(upper)
-    return q1, q3
-
-def iqr(lst):
-    q1, q3 = quartiles(lst)
-    return q3 - q1
-
-def outliers(lst):
-    q1, q3 = quartiles(lst)
-    iqr_val = iqr(lst)
-    lower_bound = q1 - (1.5 * iqr_val)
-    upper_bound = q3 + (1.5 * iqr_val)
-    return [x for x in lst if x < lower_bound or x > upper_bound]
-
-# Example usage:
+# Generate random data
 data = []
-print("Minimum value:", min_max(data)[0])
-print("Maximum value:", min_max(data)[1])
-print("Median:", median(data))
-print("First Quartile:", quartiles(data)[0])
-print("Third Quartile:", quartiles(data)[1])
-print("Interquartile Range:", iqr(data))
-print("Outliers:", outliers(data))
+
+# Calculate statistical values
+mean = np.mean(data)
+median = np.median(data)
+minimum = np.min(data)
+maximum = np.max(data)
+q1, q3 = np.percentile(data, [25, 75])
+iqr = q3 - q1
+upper_bound = q3 + (1.5 * iqr)
+lower_bound = q1 - (1.5 * iqr)
+outliers = [x for x in data if x < lower_bound or x > upper_bound]
+
+# Plot chart with outliers
+sns.boxplot(data=data)
+sns.swarmplot(data=outliers, color='red', size=5, edgecolor='black')
+
+
+#plt.hist(data, bins=30, alpha=0.5)
+
+# Add median line
+#plt.axvline(median, color='red', linestyle='dashed', linewidth=2)
+
+
+# Add labels and title
+plt.xlabel('Data')
+plt.title('Chart with Mean, Min, Max, and Outliers')
+
+# Show plot
+plt.show()
