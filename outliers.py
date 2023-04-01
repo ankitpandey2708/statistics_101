@@ -16,20 +16,16 @@ upper_bound = q3 + (1.5 * iqr)
 lower_bound = q1 - (1.5 * iqr)
 outliers = [x for x in data if x < lower_bound or x > upper_bound]
 
-# Plot chart with outliers
-sns.boxplot(data=data)
-sns.swarmplot(data=outliers, color='red', size=5, edgecolor='black')
 
-
-#plt.hist(data, bins=30, alpha=0.5)
-
-# Add median line
-#plt.axvline(median, color='red', linestyle='dashed', linewidth=2)
-
+#chart = sns.boxplot(data=data)
+#chart.axhline(mean, color='r', linestyle='--')
+plt.hist(data, bins=30, alpha=0.5)
+plt.axvline(median, color='red', linestyle='dashed', linewidth=2)
+plt.axvline(mean, color='green', linestyle='dashed', linewidth=2)
 
 # Add labels and title
-plt.xlabel('Data')
-plt.title('Chart with Mean, Min, Max, and Outliers')
+plt.xlabel('')
+plt.title('')
 
 # Show plot
 plt.show()
