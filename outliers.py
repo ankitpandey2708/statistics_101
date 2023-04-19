@@ -35,6 +35,7 @@ plt.axvline(mean, color='green', linestyle='dashed', linewidth=2)
 '''
 # Add labels and title
 plt.xlabel('')
+plt.ylabel('')
 plt.title('')
 
 # Show plot
