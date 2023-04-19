@@ -25,7 +25,11 @@ plt.text(0.5, maximum, f'maximum: {maximum:.2f}')
 plt.text(0.5, minimum, f'minimum: {minimum:.2f}')
 plt.text(1, median, f'Median: {median:.2f}')
 '''
-plt.hist(data, bins=30, alpha=0.5)
+hist, bins = np.histogram(data, bins=30)
+for i in range(len(hist)):
+    print(f"Bin {i+1}: {bins[i]:.2f} - {bins[i+1]:.2f} -> Count: {hist[i]}")
+
+plt.hist(data, bins=30)
 plt.axvline(median, color='red', linestyle='dashed', linewidth=2)
 plt.axvline(mean, color='green', linestyle='dashed', linewidth=2)
 '''
