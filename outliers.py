@@ -14,9 +14,6 @@ iqr = q3 - q1
 upper_bound = q3 + (1.5 * iqr)
 lower_bound = q1 - (1.5 * iqr)
 outliers = [x for x in data if x < lower_bound or x > upper_bound]
-bin_size = 2 * iqr / (len(data) ** (1/3))
-print(bin_size)
-bin_size=30
 
 plt.boxplot(data)
 plt.axhline(upper_bound, color='r', linestyle='--')
@@ -28,6 +25,8 @@ plt.text(0.5, maximum, f'maximum: {maximum:.2f}')
 plt.text(0.5, minimum, f'minimum: {minimum:.2f}')
 plt.text(1, median, f'Median: {median:.2f}')
 '''
+bin_size=30
+
 hist, bins = np.histogram(data,bins=int((maximum - minimum) / bin_size))
 for i in range(len(hist)):
     print(f"Bin {i+1}: {bins[i]:.2f} - {bins[i+1]:.2f} -> Count: {hist[i]}")
